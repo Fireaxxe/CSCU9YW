@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="ApproverDefinitions" targetNamespace="urn:Approver"
+ xmlns="http://schemas.xmlsoap.org/wsdl/"
+ xmlns:app="urn:Approver"
+ xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <message name="proposalMessage">
+<!-- need three parts for name, address, and amount values 
+     use appropriate datatypes (e.g. xsd:string)-->
+
+  </message>
+
+  <message name="rateMessage">
+<!-- need one part for rate value, again use appropriate data type -->
+
+  </message>
+
+  <portType name="loanPort">
+    <operation name="approveOperation">
+
+<!-- include input and output messages defined above -->
+
+    </operation>
+  </portType>
+
+  <binding name="loanBinding" type="app:loanPort">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+    <operation name="approveOperation">
+      <soap:operation soapAction=""/>
+      <input>
+	<soap:body use="literal" namespace="urn:Approver"
+	 encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+	<soap:body use="literal" namespace="urn:Approver"
+	 encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+
+  </binding>
+
+  <service name="ApproverService">
+    <port name="ApproverLoan" binding="app:loanBinding">
+      <soap:address location="http://127.0.0.1:8080/axis2/services/ApproverService"/>
+    </port>
+  </service>
+</definitions>
